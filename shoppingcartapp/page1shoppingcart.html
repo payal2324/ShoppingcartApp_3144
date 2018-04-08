@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Shopping Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+       <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+       <style type="text/css">
+         img {
+           max-height:225px;
+           max-width:225px;
+         }
+
+         label{
+           display: block;
+         }
+
+       </style>
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="columns">
+        <div class="column">
+
+                <center><h1 class="title">SHOPPING CART</h1></center>
+        </div>
+      </div>
+
+
+      <div class="columns">
+        <div class="column is-half">
+
+          <div class="card">
+      <div class="card-image">
+        <div class="card is-horizontal">
+
+        <figure class="image is-256x256">
+          <img src="https://d010202.bibloo.cz/_galerie/varianty/3/34962-facebook.jpg">
+        </figure>
+        <center>
+          <label id="#pro1name" value="Shoes"> SHOES</label>
+            <label id="#pro1brand"> ADDIDAS</label>
+            <label id="#pro1price"> 150</label>
+          </center>
+
+                    <center><a class="button is-info" id="buy1"> BUY</a></center>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        <div class="column is-half">
+        <div class="card">
+                    <div class="card-image">
+                    <figure class="image is-256x256">
+          <img src="https://cdnc.lystit.com/1200/630/tr/photos/zappos/8858736-Beige-7b67fa1e-.jpeg">
+        </figure>
+        <center>
+          <label id="#pro2name"> SHOES</label>
+            <label id="#pro2brand"> ALDO</label>
+            <label id="#pro2price"> 200</label>
+          </center>
+
+                      <center><a class="button is-info" id="buy2">BUY</a></center>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                  <div class="columns">
+                    <div class="column">
+
+                      <center><a  class="button is-info" id="btnviewcart" href="C:\Users\USER\Desktop\page2shoppingcart.html"> VIEW CART</a></center>
+
+                     </div>
+                     </div>
+
+                     </div>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+var product1 = [];
+var product2 = [];
+var xa,xb,xc,ya,yb,yc = "";
+var xd = 0;   // quantity of product1
+var yd = 0;   // quantity of product2
+var xe,ye=0;   // multiplicated value of bought products...
+
+$("#buy1").click(function()
+{
+
+// upper coding
+ xa = document.getElementById("#pro1name").innerHTML;
+ xb =  document.getElementById("#pro1brand").innerHTML;
+ xc=  document.getElementById("#pro1price").innerHTML;
+
+xd +=1;
+xe = xc * xd;
+console.log("My line " + xe);
+
+});
+
+$("#buy2").click(function()
+
+  {
+ ya = document.getElementById("#pro2name").innerHTML;
+ yb =  document.getElementById("#pro2brand").innerHTML;
+ yc=  document.getElementById("#pro2price").innerHTML;
+
+yd += 1;
+ye = yd * yc;
+console.log("My line " + ye);
+});
+
+$("#btnviewcart").click(function(){
+
+  if(xd >0)
+  {
+  pro1 = {
+  "name":xa,
+  "brand":xb,
+  "price":xc,
+  "quantity":xd,
+  "mul":xe
+  };
+  product1.push(pro1);
+  }
+
+  if(yd >0)
+  {
+
+    pro2 = {
+    "name":ya,
+    "brand":yb,
+    "price":yc,
+    "quantity":yd,
+    "mul":ye
+    };
+
+      product2.push(pro2);
+  }
+
+
+// product 1 in local storage :
+  var setproduct1 = JSON.stringify(product1);
+
+  localStorage.setItem("setproduct1",setproduct1);
+
+  console.log("******************");
+
+  var getproduct1= localStorage.getItem("setproduct1")
+   var boughtproduct1 = JSON.parse(getproduct1);
+  console.log("products after parsing:" + boughtproduct1);
+  for(i=0;i<=boughtproduct1.length;i++)
+  {
+    console.log(boughtproduct1[i]);
+  }
+// product 2 in local storage :
+  var setproduct2 = JSON.stringify(product2);
+
+  localStorage.setItem("setproduct2",setproduct2);
+
+  console.log("******************");
+
+  var getproduct2= localStorage.getItem("setproduct2")
+   var boughtproduct2 = JSON.parse(getproduct2);
+  console.log("products after parsing:" + boughtproduct2);
+  for(i=0;i<=boughtproduct2.length;i++)
+  {
+    console.log(boughtproduct2[i]);
+  }
+
+});
+
+  </script>
+  </body>
+</html>

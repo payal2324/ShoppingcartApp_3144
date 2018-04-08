@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+   <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+   <script type="text/javascript">
+      (function(){
+         emailjs.init(" user_csnC5rPECwfdkhV8TX99l");
+      })();
+   </script>
+<style>
+
+.rows{
+
+height:30px;
+}
+
+tr{
+  height: 50px;
+  width:100px;
+  border:1px red dashed;
+  padding:2px;
+  margin:2px;
+  line-height: 40px;
+}
+
+</style>
+</head>
+<body>
+
+  <div>
+    <center>
+  <table class="table is-bordered" id="tab">
+  <div class="content">
+  <h2><caption>YOUR ORDER DETAILS</caption></h2>
+  </div>
+
+  <tr>
+  <th> Name </th>
+  <th> brand</th>
+  <th> price </th>
+  <th> <label> -  quantity   + </label> </th>
+  <th> Total </th>
+  </tr>
+  </table>
+  </div>
+  <div>
+  <center>
+       <a class= "button is-info" id="show"> SHOW MY ORDER </a>
+       <!-- <a class="button is-info"> CUSTOM CART</a> -->
+  </center>
+
+  </div>
+  </center>
+</center>
+<br><br>
+
+
+ <!-- CUSTOMER DETAILS -->
+
+<center>
+<div class="content">
+
+  <h2><caption>CUSTOMER DETAILS</caption></h2>
+</div>
+</center>
+<div class="container is-centered">
+<!-- <div class="card"> -->
+
+<div class="field">
+
+  <label class="labelname">Name</label>
+  <div class="control">
+    <input class="input" type="text" placeholder="YOUR NAME">
+  </div>
+</div>
+<div class="field">
+
+  <label class="labelemail">Email</label>
+  <div class="control has-icons-left has-icons-right">
+
+    <!-- <input class="input" type="email" id="mail" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL"> -->
+
+
+    <input class="input" id="emailAddress" type="email" size="15" maxLength="30" required
+              placeholder="username@gmail.com" pattern="name@gmail.com">
+
+
+
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+
+  </div>
+</div>
+
+
+<div class="field">
+
+  <label class="labelTel">TEL :</label>
+    <div class="field is-expanded">
+      <div class="field has-addons">
+        <p class="control">
+          <a class="button is-static">
+            +1
+          </a>
+        </p>
+
+          <!-- <input class="input" type="tel" placeholder="Your phone number"  size="10"> -->
+       <input type="tel" size="3"> - <input type="tel" size="3"> - <input type="tel" size="4" required>
+
+
+       </div>
+
+    </div>
+  </div>
+
+
+<br>
+  <div class="control">
+  <center><a class="button is-info" id="confirm" href="C:\Users\USER\Desktop\page3shoppingcart.html">
+CONFIRM</a></center>
+
+  </div>
+
+</body>
+
+
+<!--<script src="phoneno-all-numeric-validation.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var count1, count2=0;
+var getproduct1= localStorage.getItem("setproduct1")
+var boughtproduct1 = JSON.parse(getproduct1);
+var getproduct2= localStorage.getItem("setproduct2")
+var boughtproduct2 = JSON.parse(getproduct2);
+var subtotal = 0;
+subtotal = boughtproduct1[0].mul+ boughtproduct2[0].mul;
+  count1= boughtproduct1.length;
+  count2= boughtproduct2.length;
+
+  // $("#show").click(
+  // function() {
+  // document.getElementById('show').disabled=true;
+$("#show").click(
+  function(){
+
+    document.getElementById('show').disabled=true;
+
+
+  if(count1 > 0)
+  {
+            console.log(boughtproduct1);
+
+
+
+              $("#tab").append(
+                "<tr>" +
+                "<td>" + boughtproduct1[0].name + "</td>" +
+                "<td>" + boughtproduct1[0].brand + "</td>" +
+                "<td> "+  boughtproduct1[0].price + "</td>" +
+                "<td><button id='btnadd1'> + </button>" +
+                "<span id='quantity1'>" + boughtproduct1[0].quantity +
+              "<button id='btnsub1'>  - </button></td>" +
+                "<td>" + boughtproduct1[0].mul + "</td>"
+            +  "  </tr>");
+
+        }
+
+        if(count2 > 0)
+        {
+                  console.log("I like singing!");
+                  console.log(boughtproduct2);
+                  console.log("products on 2nd page:" + boughtproduct2);
+
+                    $("#tab").append(
+                      "<tr>" +
+                      "<td>" + boughtproduct2[0].name + "</td>" +
+                      "<td>" + boughtproduct2[0].brand + "</td>" +
+                      "<td> "+  boughtproduct2[0].price + "</td>" +
+                      "<td><button id='btnadd2'> + </button>" +
+                      "<span id='quantity2'>" + boughtproduct2[0].quantity +
+                                  "<button id='btnsub2'>  - </button></td>" +
+                      "<td>" + boughtproduct2[0].mul + "</td>"
+                  +  "  </tr>");
+}
+
+
+
+  $("#tab").append("<tr><td colspan='5'><hr></td></tr>");
+            $("#tab").append("<tr class='rows'><td colspan=4><span style='float:right; margin-rigth:30px;'>Total : </td><td>" + subtotal + "<span></td></tr>");
+            var tax = (10 * subtotal)/100;
+            $("#tab").append("<tr class='rows'><td colspan=4><span style='float:right; margin-rigth:30px;'> HST(10%) : </span></td><td>" + tax + "</td></tr>");
+var grandtotal = tax + subtotal;
+  $("#tab").append("<tr class='rows'><td colspan=4><span style='float:right; margin-rigth:30px;'>  Grand Total : <span></td><td>" + grandtotal + "</td></tr>");
+          });
+
+                               ///////EMAIL.JS/////////
+
+
+          $("#confirm").click(function()
+          {
+
+            emailjs.send("<gmail>","<shoppingcart>",{name: "Navjot", notes: "Check this out!"})
+            .then(function(response) {
+               console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+            }, function(err) {
+               console.log("FAILED. error=", err);
+            });
+
+          });
+
+
+//////////phone number validation////////
+// $("#confirm").click(function()
+//
+// {
+//
+//   function phonenumber(labelTel)
+//   {
+//     var phoneno = /^\d{10}$/;
+//     if((labelTel.value.match(phoneno))
+//           {
+//         return true;
+//           }
+//         else
+//           {
+//           alert("message");
+//           return false;
+//           }
+//   }
+//
+//
+// });
+
+
+</script>
+
+</html>
